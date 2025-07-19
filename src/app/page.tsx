@@ -57,18 +57,22 @@ export default function Home() {
       <div style={{
         background: "rgba(0,0,0,0.3)",
         borderRadius: 16,
-        padding: 32,
+        padding: 40,
         color: "#fff",
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: 600,
         textShadow: "0 2px 8px #0008",
-        minWidth: 320,
-        minHeight: 120,
+        minWidth: 400,
+        maxWidth: 600,
+        minHeight: 160,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         flexDirection: "column",
+        lineHeight: 1.4,
+        wordWrap: "break-word",
+        whiteSpace: "pre-wrap",
       }}>
         {loading ? "Loading..." : error ? error : quote}
       </div>

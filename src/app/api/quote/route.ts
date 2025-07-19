@@ -7,7 +7,7 @@ export async function POST(_req: NextRequest) {
   }
 
   // You can customize the prompt as you wish
-  const prompt = "Покажи короткую цитату (120-150 символов) про св. влкмч. Елизавету Федоровну. Только цитату, без комментариев.";
+  const prompt = "Покажи вдохновляющую цитату (200-300 символов) про св. влкмч. Елизавету Федоровну. Цитата должна быть достаточно длинной для 2-3 строк. Только цитату, без комментариев.";
 
   try {
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -22,7 +22,7 @@ export async function POST(_req: NextRequest) {
           { role: "system", content: "You are a helpful assistant." },
           { role: "user", content: prompt },
         ],
-        max_tokens: 60,
+        max_tokens: 150,
         temperature: 0.8,
       }),
     });
