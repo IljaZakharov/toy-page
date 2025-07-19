@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(_req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Missing OpenAI API key" }, { status: 500 });
@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
     const data = await openaiRes.json();
     const quote = data.choices?.[0]?.message?.content?.trim() || "No quote found.";
     return NextResponse.json({ quote });
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message || "Unknown error" }, { status: 500 });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 } 

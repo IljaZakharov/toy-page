@@ -33,7 +33,7 @@ export default function Home() {
         setQuote(data.quote);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch((_err) => {
         setError("Failed to fetch quote");
         setLoading(false);
       });
