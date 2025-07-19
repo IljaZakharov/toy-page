@@ -40,3 +40,18 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Hide Next.js development mode indicator */
+#__next-build-watcher {
+  display: none !important;
+}
+
+/* Alternative selectors that might work */
+[data-nextjs-data-router-runtime-scroll-position] {
+  display: none !important;
+}
+
+/* Hide any development-related overlays */
+[data-nextjs-toast-errors] {
+  display: none !important;
+}

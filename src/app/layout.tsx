@@ -19,14 +19,42 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Hide Next.js development mode indicator
+              (function() {
+                function hideDevIndicator() {
+                  const indicators = document.querySelectorAll('[data-nextjs-data-router-runtime-scroll-position], #__next-build-watcher, [data-nextjs-toast-errors]');
+                  indicators.forEach(el => {
+                    if (el) el.style.display = 'none';
+                  });
+                }
+                
+                // Run immediately
+                hideDevIndicator();
+                
+                // Run after DOM is loaded
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', hideDevIndicator);
+                }
+                
+                // Run periodically to catch any late-appearing indicators
+                setInterval(hideDevIndicator, 1000);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>
-  );
+  )
 }
